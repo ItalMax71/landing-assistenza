@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+
 <title>Max Impianti – Manutenzione e Climatizzazione</title>
 
 <style>
@@ -12,11 +13,13 @@ body{
   background:#f4f7fa;
   color:#0b2a3a;
 }
+
 .container{
   max-width:900px;
   margin:auto;
   padding:20px;
 }
+
 .card{
   background:white;
   padding:25px;
@@ -24,71 +27,73 @@ body{
   margin-bottom:20px;
   box-shadow:0 10px 25px rgba(0,0,0,0.1);
 }
-h1{text-align:center;}
-h2{margin-top:0;}
+
+h1{
+  text-align:center;
+}
+
+h2{
+  margin-top:0;
+}
+
 .lead{
   text-align:center;
   font-size:18px;
   color:#445;
 }
+
 .btn{
   display:block;
-  width:100%;
   text-align:center;
   padding:16px;
   margin-top:15px;
   border-radius:10px;
   text-decoration:none;
   font-weight:bold;
-  border:none;
-  cursor:pointer;
-  box-sizing:border-box;
 }
+
 .btn-call{
   background:#0b2a3a;
   color:white;
 }
+
 .btn-wa{
   background:#128C7E;
   color:white;
 }
+
 .highlight{
   background:#fff4cc;
 }
+
 .footer{
   text-align:center;
   font-size:14px;
   margin-top:30px;
   color:#555;
 }
+
 .input{
   width:100%;
   padding:14px;
-  border:1px solid #cfd8dc;
+  border:1px solid #ccc;
   border-radius:10px;
   font-size:16px;
-  box-sizing:border-box;
 }
+
 .result{
   margin-top:12px;
-  padding:14px;
+  padding:12px;
   border-radius:10px;
   font-weight:bold;
-  display:none;
 }
-.result.ok{
-  display:block;
-  background:#e8f6ec;
-  color:#1f6b35;
+.ok{
+  background:#e6f7ec;
+  color:#1b5e20;
 }
-.result.ko{
-  display:block;
-  background:#fdecec;
-  color:#9b1c1c;
-}
-.small{
-  font-size:14px;
-  color:#555;
+.ko{
+  background:#fdecea;
+  color:#b71c1c;
 }
 </style>
 </head>
@@ -97,207 +102,183 @@ h2{margin-top:0;}
 
 <div class="container">
 
-  <div class="card">
-    <h1>Max Impianti</h1>
-    <p class="lead">
-      Dal 1995 esperienza sul campo,<br>
-      oggi evoluta con ricerca, sviluppo e innovazione.
-    </p>
+<!-- HERO -->
+<div class="card">
+  <h1>Max Impianti</h1>
 
-    <a href="index.html" class="btn" style="background:#eee;color:#0b2a3a;">
-      ← Torna alla pagina rapida
-    </a>
-  </div>
+  <p class="lead">
+    Dal 1995 esperienza sul campo,<br>
+    oggi evoluta con ricerca, sviluppo e innovazione.
+  </p>
 
-  <div class="card">
-    <h2>Esperienza reale, oggi evoluta</h2>
-    <p>
-      Max Impianti opera nel settore dal 1995, costruendo negli anni un’esperienza
-      concreta negli impianti, nella manutenzione e nella climatizzazione.
-    </p>
-    <p>
-      Oggi questa esperienza si unisce a un percorso attivo di
-      <strong>ricerca, sviluppo e innovazione</strong>, con l’obiettivo di offrire
-      servizi più efficienti, organizzati e accessibili anche online.
-    </p>
-    <p>
-      Il risultato è un servizio che mantiene la solidità del lavoro sul campo,
-      ma con un approccio più moderno e orientato al cliente.
-    </p>
-  </div>
+  <a href="index.html" class="btn" style="background:#eee;color:#0b2a3a;">
+    ← Torna alla pagina rapida
+  </a>
+</div>
 
-  <div class="card highlight">
-    <h2>Offerta dedicata al web</h2>
-    <p>
-      Prenotando online la manutenzione, accedi a uno sconto del
-      <strong>10%</strong>.
-    </p>
-    <p>
-      La prenotazione sarà confermata con un
-      <strong>acconto di € 50,00</strong>.
-    </p>
-    <p>
-      Offerta valida nelle zone operative entro circa 15 km.
-    </p>
+<!-- IDENTITÀ -->
+<div class="card">
+  <h2>Esperienza reale, oggi evoluta</h2>
 
-    <a href="tel:+390282197560" class="btn btn-call">
-      ☎️ Chiama ora – 02 8219 7560
-    </a>
+  <p>
+    Max Impianti opera nel settore dal 1995, costruendo negli anni un’esperienza
+    concreta negli impianti, nella manutenzione e nella climatizzazione.
+  </p>
 
-    <a href="https://wa.me/390282197560?text=Buongiorno%2C%20vorrei%20informazioni%20sull'offerta%20manutenzione."
-       target="_blank"
-       class="btn btn-wa">
-      WhatsApp
-    </a>
-  </div>
+  <p>
+    Oggi questa esperienza si unisce a un percorso attivo di
+    <strong>ricerca, sviluppo e innovazione</strong>, con l’obiettivo di offrire
+    servizi più efficienti, organizzati e accessibili anche online.
+  </p>
 
-  <div class="card">
-    <h2>Servizi principali</h2>
-    <ul>
-      <li>Manutenzione caldaie</li>
-      <li>Assistenza climatizzatori</li>
-      <li>Installazione climatizzazione</li>
-    </ul>
-  </div>
+  <p>
+    Il risultato è un servizio che mantiene la solidità del lavoro sul campo,
+    ma con un approccio più moderno e orientato al cliente.
+  </p>
+</div>
 
-  <div class="card">
-    <h2>Dove operiamo</h2>
+<!-- OFFERTA -->
+<div class="card highlight">
+  <h2>Offerta dedicata al web</h2>
 
-    <p>
-      Per garantire rapidità ed efficienza, il servizio di manutenzione è riservato
-      alle zone entro circa <strong>15 km da Lazzate</strong>.
-    </p>
+  <p>
+    Prenotando online la manutenzione, accedi a uno sconto del
+    <strong>10%</strong>.
+  </p>
 
-    <p>
-      Verifica nella mappa se la tua zona rientra nell’area operativa.
-    </p>
+  <p>
+    La prenotazione sarà confermata con un
+    <strong>acconto di € 50,00</strong>.
+  </p>
 
-    <img
-      src="assets/mappa_15km_lazzate.png"
-      alt="Area operativa entro 15 km da Lazzate"
-      style="width:100%; border-radius:12px; margin-top:15px;"
-    >
+  <p>
+    Offerta valida nelle zone operative entro circa <strong>20 km</strong>.
+  </p>
 
-    <p class="small" style="margin-top:12px;">
-      Se hai dubbi sulla copertura della tua zona, contattaci prima della prenotazione.
-    </p>
-  </div>
+  <a href="tel:+390282197560" class="btn btn-call">
+    ☎️ Chiama ora – 02 8219 7560
+  </a>
 
-  <div class="card">
-    <h2>Verifica copertura zona</h2>
-    <p>Inserisci il tuo comune per sapere se rientra nell’offerta manutenzione.</p>
+  <a href="https://wa.me/390282197560?text=Buongiorno%2C%20vorrei%20informazioni%20sull'offerta%20manutenzione."
+     target="_blank"
+     class="btn btn-wa">
+    WhatsApp
+  </a>
+</div>
 
-    <input
-      type="text"
-      id="cityInput"
-      class="input"
-      placeholder="Es. Lazzate, Saronno, Limbiate"
-    >
+<!-- SERVIZI -->
+<div class="card">
+  <h2>Servizi principali</h2>
 
-    <button type="button" class="btn btn-call" onclick="checkCity()">
-      Verifica copertura
-    </button>
+  <ul>
+    <li>Manutenzione caldaie</li>
+    <li>Assistenza climatizzatori</li>
+    <li>Installazione climatizzazione</li>
+  </ul>
+</div>
 
-    <div id="resultBox" class="result"></div>
+<!-- AREA -->
+<div class="card">
+  <h2>Dove operiamo</h2>
 
-    <p class="small" style="margin-top:12px;">
-      Verifica indicativa basata sui comuni inclusi nell’area operativa.
-    </p>
-  </div>
+  <p>
+    Per garantire rapidità ed efficienza, il servizio di manutenzione è riservato
+    alle zone entro circa <strong>20 km da Lazzate</strong>.
+  </p>
 
-  <div class="card">
-    <h2>Una storia costruita nel tempo</h2>
+  <p>
+    Verifica nella mappa se la tua zona rientra nell’area operativa.
+  </p>
 
-    <p>
-      Il percorso di Max Impianti parte da lontano e si è evoluto negli anni,
-      mantenendo sempre un approccio concreto e orientato al lavoro sul campo.
-    </p>
+  <img
+    src="assets/mappa_20km_lazzate.png"
+    alt="Area operativa entro 20 km da Lazzate"
+    style="width:100%; border-radius:12px; margin-top:15px;"
+  >
 
-    <p style="color:#555;">
-      Oggi questa esperienza si affianca a un percorso di sviluppo e innovazione,
-      mantenendo continuità con le radici dell’attività.
-    </p>
+  <p style="margin-top:12px; font-size:14px; color:#555;">
+    Se hai dubbi sulla copertura della tua zona o ti trovi al limite dell’area indicata,
+    contattaci prima della prenotazione.
+  </p>
+</div>
 
-    <a href="https://max-impianti.info"
-       target="_blank"
-       class="btn btn-call"
-       style="max-width:320px; margin:18px auto 0 auto;">
-      Scopri il sito storico
-    </a>
-  </div>
+<!-- VERIFICA ZONA -->
+<div class="card">
+  <h2>Verifica copertura zona</h2>
 
-  <div class="footer">
-    <strong>Max Impianti di Mian Massimiliano</strong><br>
-    P. IVA 02518330960
-  </div>
+  <p>Inserisci il tuo comune:</p>
+
+  <input id="cityInput" class="input" placeholder="Es. Saronno">
+
+  <button onclick="checkCity()" class="btn btn-call">
+    Verifica
+  </button>
+
+  <div id="resultBox" class="result"></div>
+</div>
+
+<!-- STORIA -->
+<div class="card">
+  <h2>Una storia costruita nel tempo</h2>
+
+  <p>
+    Il percorso di Max Impianti parte da lontano e si è evoluto negli anni,
+    mantenendo sempre un approccio concreto e orientato al lavoro sul campo.
+  </p>
+
+  <p style="color:#555;">
+    Oggi questa esperienza si affianca a un percorso di sviluppo e innovazione,
+    mantenendo continuità con le radici dell’attività.
+  </p>
+
+  <a href="https://max-impianti.info"
+     target="_blank"
+     class="btn btn-call"
+     style="max-width:320px; margin:18px auto 0 auto;">
+    Scopri il sito storico
+  </a>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <strong>Max Impianti di Mian Massimiliano</strong><br>
+  P. IVA 02518330960
+</div>
 
 </div>
 
 <script>
 function normalizeText(str) {
-  return str
-    .toLowerCase()
-    .trim()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "");
+  return str.toLowerCase().trim();
 }
 
 function checkCity() {
-  const includedCities = [
-    "lazzate",
-    "misinto",
-    "cogliate",
-    "ceriano laghetto",
-    "solaro",
-    "limbiate",
-    "bovisio masciago",
-    "cesano maderno",
-    "seveso",
-    "meda",
-    "barlassina",
-    "lentate sul seveso",
-    "saronno",
-    "rovello porro",
-    "rovellasca",
-    "turate",
-    "uboldo",
-    "gerenzano",
-    "caronno pertusella",
-    "origgio",
-    "lomazzo",
-    "cabiate",
-    "mariano comense",
-    "giussano",
-    "varedo",
-    "nova milanese",
-    "desio",
-    "senago",
-    "garbagnate milanese",
-    "cesate",
-    "carimate",
-    "novedrate"
+  const cities = [
+    "lazzate","misinto","cogliate","ceriano laghetto","solaro","limbiate",
+    "bovisio masciago","cesano maderno","seveso","meda","barlassina",
+    "lentate sul seveso","saronno","rovello porro","rovellasca","turate",
+    "uboldo","gerenzano","caronno pertusella","origgio","lomazzo","cabiate",
+    "mariano comense","giussano","varedo","nova milanese","desio",
+    "senago","garbagnate milanese","cesate","carimate","novedrate"
   ];
 
-  const input = document.getElementById("cityInput");
-  const resultBox = document.getElementById("resultBox");
-  const city = normalizeText(input.value);
+  const input = document.getElementById("cityInput").value;
+  const result = document.getElementById("resultBox");
 
-  resultBox.className = "result";
-
-  if (!city) {
-    resultBox.textContent = "Inserisci un comune prima di eseguire la verifica.";
-    resultBox.classList.add("ko");
+  if (!input) {
+    result.className = "result ko";
+    result.innerText = "Inserisci un comune";
     return;
   }
 
-  const found = includedCities.includes(city);
+  const city = normalizeText(input);
 
-  if (found) {
-    resultBox.textContent = "✅ Il tuo comune rientra indicativamente nell’area operativa dell’offerta manutenzione.";
-    resultBox.classList.add("ok");
+  if (cities.includes(city)) {
+    result.className = "result ok";
+    result.innerText = "✅ Sei nell’area operativa";
   } else {
-    resultBox.textContent = "❌ Il comune indicato non risulta nell’area operativa standard. Contattaci per una verifica diretta.";
-    resultBox.classList.add("ko");
+    result.className = "result ko";
+    result.innerText = "❌ Zona fuori area (verifica telefonica consigliata)";
   }
 }
 </script>
