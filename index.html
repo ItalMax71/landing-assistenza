@@ -220,6 +220,176 @@
     </div>
   </main>
 </body>
+</html>
+      display:flex;
+      gap: 14px;
+      align-items:center;
+      margin-bottom: 12px;
+    }
+
+    .logo-img{
+      width: 140px;
+      max-width: 100%;
+      height: auto;
+      display: block;
+      flex: 0 0 auto;
+    }
+
+    h1{
+      font-size: clamp(22px, 3.2vw, 30px);
+      margin: 0;
+      line-height: 1.15;
+    }
+
+    .subtitle{
+      margin: 6px 0 0 0;
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.35;
+    }
+
+    .thanks{
+      margin: 16px 0 18px;
+      font-size: 18px;
+      line-height: 1.4;
+      color: var(--text);
+    }
+
+    .grid{
+      display:grid;
+      gap: 12px;
+      margin-top: 10px;
+    }
+
+    .btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      text-decoration:none;
+      border-radius: 16px;
+      padding: 18px 16px;
+      font-size: 20px;
+      font-weight: 750;
+      border: 0;
+      color: var(--btnText);
+      background: var(--btn);
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .btn:focus{
+      outline: 4px solid rgba(23, 107, 138, 0.35);
+      outline-offset: 2px;
+    }
+
+    .btn-call{
+      background: #0b2a3a;
+    }
+
+    .btn-wa{
+      background: var(--wa);
+    }
+
+    .btn-wa.secondary{
+      background: #0f6f64;
+    }
+
+    .small{
+      margin-top: 14px;
+      font-size: 14px;
+      color: rgba(11,31,42,0.85);
+      line-height: 1.4;
+    }
+
+    .small strong{
+      font-weight: 800;
+    }
+
+    .footer{
+      margin-top: 18px;
+      padding-top: 14px;
+      text-align: center;
+      color: rgba(255,255,255,0.95);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    @media (max-width: 640px){
+      .brand{
+        flex-direction: column;
+        text-align: center;
+      }
+
+      .logo-img{
+        width: 180px;
+      }
+
+      .btn{
+        font-size: 18px;
+        padding: 16px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{
+        scroll-behavior:auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="wrap" role="main">
+    <section class="card" aria-label="Contatti rapidi">
+      <div class="brand">
+        <img
+          src="assets/logo_max_impianti_transparent.png"
+          alt="Logo Max Impianti"
+          class="logo-img"
+        />
+        <div>
+          <h1>Assistenza Caldaie Italia</h1>
+          <p class="subtitle">Manutenzione • Riparazioni • Assistenza rapida</p>
+        </div>
+      </div>
+
+      <p class="thanks">
+        Grazie per aver visitato la pagina.<br>
+        Per parlare subito con noi, scegli un’opzione:
+      </p>
+
+      <div class="grid">
+        <a class="btn btn-call" href="tel:+390282197560" aria-label="Chiama ora lo 02 8219 7560">
+          ☎️ <span>CHIAMA ORA – 02 8219 7560</span>
+        </a>
+
+        <a class="btn btn-wa" target="_blank" rel="noopener"
+           href="https://wa.me/390282197560?text=🔥%20Buongiorno%2C%20richiedo%20assistenza%20per%20la%20CALDAIA.%0A%0AComune%3A%20____%0AMarca%3A%20____%0AModello%3A%20____%0AProblema%3A%20____%0A%0AGrazie."
+           aria-label="Invia messaggio WhatsApp per assistenza caldaia">
+          🔥 <span>WhatsApp – ASSISTENZA CALDAIA</span>
+        </a>
+
+        <a class="btn btn-wa secondary" target="_blank" rel="noopener"
+           href="https://wa.me/390282197560?text=Buongiorno%2C%20richiedo%20assistenza%20per%20il%20CLIMATIZZATORE.%0A%0AComune%3A%20____%0AMarca%3A%20____%0AModello%3A%20____%0AProblema%3A%20____%0A%0AGrazie."
+           aria-label="Invia messaggio WhatsApp per assistenza climatizzatore">
+          ❄️ <span>WhatsApp – ASSISTENZA CLIMATIZZATORE</span>
+        </a>
+      </div>
+
+      <p class="small">
+        <strong>Nota:</strong> se preferisci, puoi anche inviare una foto del libretto o della targhetta (marca/modello).
+      </p>
+    </section>
+
+    <div class="footer">
+      <strong>Max Impianti di Mian Massimiliano</strong><br>
+      P. IVA 02518330960<br>
+      Assistenza e manutenzione caldaie e climatizzatori<br><br>
+      assistenzacaldaieitalia.it
+    </div>
+  </main>
+</body>
 </html><!doctype html>
 <html lang="it">
 <head>
