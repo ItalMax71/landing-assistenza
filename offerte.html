@@ -87,10 +87,12 @@ h2{
   border-radius:10px;
   font-weight:bold;
 }
+
 .ok{
   background:#e6f7ec;
   color:#1b5e20;
 }
+
 .ko{
   background:#fdecea;
   color:#b71c1c;
@@ -191,9 +193,9 @@ h2{
   </p>
 
   <img
-    src="assets/mappa_20km_lazzate.png"
+    src="./assets/mappa.png?v=1"
     alt="Area operativa entro 20 km da Lazzate"
-    style="width:100%; border-radius:12px; margin-top:15px;"
+    style="width:100%; border-radius:12px; margin-top:15px; display:block;"
   >
 
   <p style="margin-top:12px; font-size:14px; color:#555;">
@@ -259,8 +261,8 @@ function checkCity() {
     "lentate sul seveso","saronno","rovello porro","rovellasca","turate",
     "uboldo","gerenzano","caronno pertusella","origgio","lomazzo","cabiate",
     "mariano comense","giussano","varedo","nova milanese","desio",
-    "senago","garbagnate milanese","cesate","carimate","novedrate","bregnano","cirimido","cislago",
-    "appiano gentile", "lurago marinone"
+    "senago","garbagnate milanese","cesate","carimate","novedrate",
+    "bregnano","cirimido","cislago","appiano gentile","lurago marinone"
   ];
 
   const input = document.getElementById("cityInput").value;
