@@ -17,6 +17,7 @@
       --wa: #128C7E;
       --shadow: 0 14px 40px rgba(0,0,0,0.35);
       --radius: 18px;
+      --gold: #f0b400;
     }
 
     *{
@@ -103,6 +104,12 @@
       border: 0;
       color: var(--btnText);
       background: var(--btn);
+      transition: transform 0.15s ease, box-shadow 0.15s ease, opacity 0.15s ease;
+    }
+
+    .btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.12);
     }
 
     .btn-call{
@@ -122,6 +129,49 @@
       font-size: 14px;
       color: rgba(11,31,42,0.85);
       line-height: 1.4;
+    }
+
+    .extra-links{
+      margin-top: 20px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .mini-btn{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      text-decoration:none;
+      border-radius: 14px;
+      padding: 14px 16px;
+      font-size: 15px;
+      font-weight: 700;
+      transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    .mini-btn:hover{
+      transform: translateY(-1px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.10);
+    }
+
+    .mini-btn.offerte{
+      background: linear-gradient(135deg, #fff7d6, #ffeaa0);
+      color: #5f4600;
+      border: 1px solid rgba(240,180,0,0.45);
+    }
+
+    .mini-btn.azienda{
+      background: rgba(11,42,58,0.06);
+      color: #0b2a3a;
+      border: 1px solid rgba(11,42,58,0.14);
+    }
+
+    .mini-logo{
+      width: 34px;
+      height: auto;
+      display:block;
+      flex: 0 0 auto;
     }
 
     .footer{
@@ -146,6 +196,14 @@
       .btn{
         font-size: 18px;
         padding: 16px 14px;
+      }
+
+      .mini-btn{
+        font-size: 14px;
+      }
+
+      .mini-logo{
+        width: 30px;
       }
     }
   </style>
@@ -173,26 +231,39 @@
       </p>
 
       <div class="grid">
-
         <a class="btn btn-call" href="tel:+390282197560">
           ☎️ <span>CHIAMA ORA – 02 8219 7560</span>
         </a>
 
-        <a class="btn btn-wa" target="_blank"
-           href="https://wa.me/390282197560?text=🔥%20Buongiorno%2C%20richiedo%20assistenza%20per%20la%20CALDAIA.">
+        <a class="btn btn-wa" target="_blank" rel="noopener"
+           href="https://wa.me/390282197560?text=Buongiorno%2C%20richiedo%20assistenza%20per%20la%20CALDAIA.">
           🔥 <span>WhatsApp – ASSISTENZA CALDAIA</span>
         </a>
 
-        <a class="btn btn-wa secondary" target="_blank"
+        <a class="btn btn-wa secondary" target="_blank" rel="noopener"
            href="https://wa.me/390282197560?text=Buongiorno%2C%20richiedo%20assistenza%20per%20il%20CLIMATIZZATORE.">
           ❄️ <span>WhatsApp – ASSISTENZA CLIMATIZZATORE</span>
         </a>
-
       </div>
 
       <p class="small">
         Nota: puoi inviare anche foto del libretto o targhetta (marca/modello).
       </p>
+
+      <div class="extra-links">
+        <a href="offerte.html" class="mini-btn offerte">
+          ✨ <span>Scopri le offerte manutenzione</span>
+        </a>
+
+        <a href="azienda.html" class="mini-btn azienda">
+          <img
+            src="assets/logo_max_impianti_transparent.png"
+            alt="Logo Max Impianti"
+            class="mini-logo"
+          />
+          <span>Max Impianti</span>
+        </a>
+      </div>
 
     </section>
 
@@ -200,7 +271,6 @@
       <strong>Max Impianti di Mian Massimiliano</strong><br>
       P. IVA 02518330960
     </div>
-
   </main>
 </body>
 </html>
