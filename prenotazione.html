@@ -8,7 +8,6 @@
   <style>
     :root{
       --navy:#0b2a3a;
-      --navy2:#173f52;
       --text:#0b1f2a;
       --muted:#586b75;
       --bg:#f4f7fa;
@@ -382,13 +381,17 @@
 
     <div class="summary" id="summaryBox"></div>
 
+    <p id="backendStatus" class="note" style="margin-top:14px;">
+      Preparazione richiesta in corso.
+    </p>
+
     <p id="paymentNote" class="note" style="margin-top:14px;">
       Dopo il pagamento torna sul sito e premi il pulsante di conferma qui sotto.
     </p>
 
     <a
       id="payButton"
-      href="https://mypos.com/@max-impianti.it
+      href="https://mypos.com/@max-impianti
       target="_blank"
       rel="noopener"
       class="btn-pay">
@@ -406,6 +409,8 @@
 </div>
 
 <script>
+const BACKEND_URL = "https://script.google.com/macros/s/AKfycbzUB7l0WvVANxGUJODxH6PSuvffo68b4BlCULJpvGem5SYFh5WQJ6aHRY3lthXee7gI/exec";
+
 function normalizeText(str) {
   return str.toLowerCase().trim();
 }
@@ -452,7 +457,24 @@ document.getElementById("servizio").addEventListener("change", function() {
   }
 });
 
-function prepareBooking() {
+async function sendBookingToBackend(payload) {
+  try {
+    const response = await fetch(BACKEND_URL, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(payload)
+    });
+
+    const result = await response.json();
+    return result.success === true;
+  } catch (error) {
+    return false;
+  }
+}
+
+async function prepareBooking() {
   const comuniCoperti = [
     "lazzate","misinto","cogliate","ceriano laghetto","solaro","limbiate",
     "bovisio masciago","cesano maderno","seveso","meda","barlassina",
@@ -469,6 +491,7 @@ function prepareBooking() {
   const payButton = document.getElementById("payButton");
   const confirmButton = document.getElementById("confirmButton");
   const paymentNote = document.getElementById("paymentNote");
+  const backendStatus = document.getElementById("backendStatus");
 
   const nome = document.getElementById("nome").value.trim();
   const cfiva = document.getElementById("cfiva").value.trim();
@@ -539,11 +562,32 @@ function prepareBooking() {
   }
 
   const prenotazione = {
-    nome, cfiva, telefono, email, comune, cap, indirizzo,
-    servizio, curit, marca, modello, note
+    nome,
+    cfiva,
+    telefono,
+    email,
+    comune,
+    cap,
+    indirizzo,
+    servizio,
+    curit,
+    marca,
+    modello,
+    note,
+    esitoZona: "Comune verificato"
   };
 
   localStorage.setItem("prenotazione_max_impianti", JSON.stringify(prenotazione));
+
+  backendStatus.innerHTML = "Invio richiesta al sistema in corso...";
+
+  const saved = await sendBookingToBackend(prenotazione);
+
+  if (saved) {
+    backendStatus.innerHTML = "✅ Richiesta registrata correttamente.";
+  } else {
+    backendStatus.innerHTML = "⚠️ Richiesta non confermata dal backend. Ti consiglio di contattarci anche telefonicamente o via WhatsApp.";
+  }
 
   summaryBox.innerHTML = `
     <div class="summary-row"><strong>Cliente:</strong> ${escapeHtml(nome)}</div>
