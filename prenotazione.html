@@ -225,6 +225,25 @@
       text-decoration:underline;
     }
 
+    .price-box{
+      margin-top:12px;
+      padding:16px;
+      border-radius:12px;
+      border:1px solid #d9e3e8;
+      background:#f9fbfc;
+      line-height:1.6;
+    }
+
+    .price-box strong{
+      color:var(--navy);
+    }
+
+    .price-title{
+      font-weight:bold;
+      margin-bottom:8px;
+      color:var(--navy);
+    }
+
     @media (max-width: 700px){
       .grid{
         grid-template-columns:1fr;
@@ -241,7 +260,8 @@
     <h1>Prenotazione online manutenzione</h1>
     <p class="lead">
       Compila il form per richiedere la prenotazione online del servizio.
-      Dopo la verifica dei dati potrai procedere al pagamento dell’acconto di <strong>€ 50,00</strong>.
+      In base al servizio selezionato vedrai il riepilogo economico e,
+      se previsto, potrai procedere al pagamento dell’acconto.
     </p>
     <p class="muted">
       Offerta valida per le zone operative entro circa <strong>20 km da Lazzate</strong>.
@@ -251,13 +271,13 @@
   <div class="card highlight">
     <h2>Condizioni sintetiche</h2>
     <p class="muted">
-      La promozione web prevede uno <strong>sconto del 10%</strong> sul servizio di manutenzione
-      prenotato tramite il sito. La richiesta viene confermata con <strong>acconto online di € 50,00</strong>.
+      La promozione web prevede condizioni dedicate in base al servizio richiesto.
+      Seleziona il tipo di servizio nel form per visualizzare il dettaglio economico.
     </p>
   </div>
 
   <div class="card">
-    <h2>Dati cliente e impianto</h2>
+    <h2>Dati cliente e caldaia</h2>
 
     <form id="bookingForm">
       <div class="grid">
@@ -299,11 +319,11 @@
         <div>
           <label for="servizio">Servizio richiesto *</label>
           <select id="servizio" name="servizio" required>
-  <option value="">Seleziona</option>
-  <option>Manutenzione ordinaria caldaia</option>
-  <option>Intervento su guasto</option>
-  <option>Sopralluogo tecnico (gratuito)</option>
-</select>
+            <option value="">Seleziona</option>
+            <option>Manutenzione ordinaria caldaia</option>
+            <option>Manutenzione su guasto</option>
+            <option>Richiesta sopralluogo</option>
+          </select>
         </div>
 
         <div>
@@ -324,6 +344,13 @@
         <div class="full">
           <label for="note">Note utili</label>
           <textarea id="note" name="note" placeholder="Descrivi eventuali dettagli utili"></textarea>
+        </div>
+
+        <div class="full">
+          <div id="importoBox" class="price-box">
+            <div class="price-title">Riepilogo economico</div>
+            Seleziona un servizio per visualizzare costi, sconti e condizioni.
+          </div>
         </div>
 
         <div class="full">
@@ -355,14 +382,13 @@
 
     <div class="summary" id="summaryBox"></div>
 
-    <p class="note" style="margin-top:14px;">
-      Se i dati sono corretti, puoi procedere al pagamento dell’acconto.
+    <p id="paymentNote" class="note" style="margin-top:14px;">
       Dopo il pagamento torna sul sito e premi il pulsante di conferma qui sotto.
     </p>
 
     <a
       id="payButton"
-      href="https://mypos.com/@max-impianti"
+      href="https://mypos.com/@max-impianti.it
       target="_blank"
       rel="noopener"
       class="btn-pay">
@@ -371,6 +397,7 @@
 
     <a
       href="conferma.html"
+      id="confirmButton"
       class="btn-confirm">
       ✔ Ho completato il pagamento
     </a>
@@ -382,6 +409,48 @@
 function normalizeText(str) {
   return str.toLowerCase().trim();
 }
+
+document.getElementById("servizio").addEventListener("change", function() {
+  const servizio = this.value;
+  const box = document.getElementById("importoBox");
+
+  if (servizio === "Manutenzione ordinaria caldaia") {
+    box.innerHTML = `
+      <div class="price-title">Riepilogo economico</div>
+      <strong>Servizio:</strong> Manutenzione ordinaria caldaia con analisi fumi e tariffa CURIT.<br>
+      <strong>Prezzo base:</strong> €110,00<br>
+      <strong>Sconto web 10%:</strong> - €11,00<br>
+      <strong>Totale promozionale:</strong> €99,00<br>
+      <strong>Acconto richiesto online:</strong> €50,00<br>
+      <strong>Saldo residuo:</strong> €49,00
+    `;
+  } 
+  else if (servizio === "Manutenzione su guasto") {
+    box.innerHTML = `
+      <div class="price-title">Riepilogo economico</div>
+      <strong>Servizio:</strong> Manutenzione su guasto.<br>
+      <strong>Acconto richiesto online:</strong> €50,00<br>
+      <strong>Vantaggi riservati alla prenotazione web:</strong><br>
+      - 10% di sconto sulla manodopera<br>
+      - 5% di sconto sui ricambi<br>
+      <strong>Nota:</strong> il costo finale dell'intervento sarà definito in base al guasto rilevato.
+    `;
+  } 
+  else if (servizio === "Richiesta sopralluogo") {
+    box.innerHTML = `
+      <div class="price-title">Riepilogo economico</div>
+      <strong>Servizio:</strong> Richiesta sopralluogo.<br>
+      <strong>Costo:</strong> gratuito<br>
+      <strong>Pagamento online:</strong> non richiesto
+    `;
+  } 
+  else {
+    box.innerHTML = `
+      <div class="price-title">Riepilogo economico</div>
+      Seleziona un servizio per visualizzare costi, sconti e condizioni.
+    `;
+  }
+});
 
 function prepareBooking() {
   const comuniCoperti = [
@@ -397,6 +466,9 @@ function prepareBooking() {
   const zoneResult = document.getElementById("zoneResult");
   const summaryCard = document.getElementById("summaryCard");
   const summaryBox = document.getElementById("summaryBox");
+  const payButton = document.getElementById("payButton");
+  const confirmButton = document.getElementById("confirmButton");
+  const paymentNote = document.getElementById("paymentNote");
 
   const nome = document.getElementById("nome").value.trim();
   const cfiva = document.getElementById("cfiva").value.trim();
@@ -423,13 +495,48 @@ function prepareBooking() {
 
   if (!comuniCoperti.includes(comuneNorm)) {
     zoneResult.className = "result ko";
-    zoneResult.textContent = "Il comune indicato non risulta nell’area operativa standard. Contattaci prima di procedere al pagamento.";
+    zoneResult.textContent = "Il comune indicato non risulta nell’area operativa standard. Contattaci prima di procedere.";
     summaryCard.classList.add("hidden");
     return;
   }
 
   zoneResult.className = "result ok";
-  zoneResult.textContent = "Comune verificato. Puoi procedere con la prenotazione online.";
+  zoneResult.textContent = "Comune verificato. Puoi procedere con la richiesta online.";
+
+  let riepilogoEconomico = "";
+
+  if (servizio === "Manutenzione ordinaria caldaia") {
+    riepilogoEconomico = `
+      <div class="summary-row"><strong>Prezzo base servizio:</strong> €110,00</div>
+      <div class="summary-row"><strong>Sconto web 10%:</strong> - €11,00</div>
+      <div class="summary-row"><strong>Totale promozionale:</strong> €99,00</div>
+      <div class="summary-row"><strong>Acconto online:</strong> €50,00</div>
+      <div class="summary-row"><strong>Saldo residuo:</strong> €49,00</div>
+    `;
+    payButton.style.display = "block";
+    paymentNote.innerHTML = "Procedi al pagamento dell’acconto di €50,00. Il totale promozionale del servizio è €99,00, con saldo residuo di €49,00.";
+    confirmButton.innerText = "✔ Ho completato il pagamento";
+  } 
+  else if (servizio === "Manutenzione su guasto") {
+    riepilogoEconomico = `
+      <div class="summary-row"><strong>Acconto online:</strong> €50,00</div>
+      <div class="summary-row"><strong>Sconto manodopera:</strong> 10%</div>
+      <div class="summary-row"><strong>Sconto ricambi:</strong> 5%</div>
+      <div class="summary-row"><strong>Nota:</strong> il costo finale dipenderà dal guasto rilevato.</div>
+    `;
+    payButton.style.display = "block";
+    paymentNote.innerHTML = "Procedi al pagamento dell’acconto di €50,00. L’acconto dà diritto agli sconti web: 10% sulla manodopera e 5% sui ricambi.";
+    confirmButton.innerText = "✔ Ho completato il pagamento";
+  } 
+  else if (servizio === "Richiesta sopralluogo") {
+    riepilogoEconomico = `
+      <div class="summary-row"><strong>Costo servizio:</strong> gratuito</div>
+      <div class="summary-row"><strong>Pagamento online:</strong> non richiesto</div>
+    `;
+    payButton.style.display = "none";
+    paymentNote.innerHTML = "Per il sopralluogo non è richiesto alcun pagamento online. Puoi confermare direttamente la richiesta.";
+    confirmButton.innerText = "✔ Conferma richiesta sopralluogo";
+  }
 
   const prenotazione = {
     nome, cfiva, telefono, email, comune, cap, indirizzo,
@@ -446,11 +553,12 @@ function prepareBooking() {
     <div class="summary-row"><strong>Comune:</strong> ${escapeHtml(comune)}</div>
     <div class="summary-row"><strong>CAP:</strong> ${escapeHtml(cap || "-")}</div>
     <div class="summary-row"><strong>Indirizzo impianto:</strong> ${escapeHtml(indirizzo)}</div>
-    <div class="summary-row"><strong>Servizio:</strong> ${escapeHtml(servizio)}</div>
+    <div class="summary-row"><strong>Servizio richiesto:</strong> ${escapeHtml(servizio)}</div>
     <div class="summary-row"><strong>Codice CURIT:</strong> ${escapeHtml(curit || "-")}</div>
-    <div class="summary-row"><strong>Marca:</strong> ${escapeHtml(marca || "-")}</div>
-    <div class="summary-row"><strong>Modello:</strong> ${escapeHtml(modello || "-")}</div>
+    <div class="summary-row"><strong>Marca caldaia:</strong> ${escapeHtml(marca || "-")}</div>
+    <div class="summary-row"><strong>Modello caldaia:</strong> ${escapeHtml(modello || "-")}</div>
     <div class="summary-row"><strong>Note:</strong> ${escapeHtml(note || "-")}</div>
+    ${riepilogoEconomico}
   `;
 
   summaryCard.classList.remove("hidden");
