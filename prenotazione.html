@@ -593,11 +593,11 @@ async function sendBookingToBackend(payload) {
 
     const saved = await sendBookingToBackend(prenotazione);
 
-    if (saved) {
-      backendStatus.innerHTML = "✅ Richiesta registrata correttamente.";
-    } else {
-      backendStatus.innerHTML = "⚠️ Richiesta non confermata dal backend. Ti consiglio di contattarci anche telefonicamente o via WhatsApp.";
-    }
+if (saved) {
+  backendStatus.innerHTML = "✅ Richiesta inviata correttamente. Tra pochi secondi dovrebbe comparire nel sistema.";
+} else {
+  backendStatus.innerHTML = "⚠️ Invio non riuscito. Ti consigliamo di contattarci anche telefonicamente o via WhatsApp.";
+}
 
     summaryBox.innerHTML = `
       <div class="summary-row"><strong>Cliente:</strong> ${escapeHtml(nome)}</div>
