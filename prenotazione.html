@@ -458,32 +458,28 @@
     }
   });
 
-  async function sendBookingToBackend(payload) {
-    try {
-      const response = await fetch(BACKEND_URL, {
-        method: "POST",
-        headers: {
-          "Content-Type": "text/plain;charset=utf-8"
-        },
-        body: JSON.stringify(payload),
-        redirect: "follow"
-      });
+async function sendBookingToBackend(payload) {
+  try {
+    const formData = new URLSearchParams();
+    Object.keys(payload).forEach(key => {
+      formData.append(key, payload[key] || "");
+    });
 
-      const text = await response.text();
-      console.log("Backend response:", text);
+    await fetch(BACKEND_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
+      },
+      body: formData.toString()
+    });
 
-      try {
-        const json = JSON.parse(text);
-        return json.success === true;
-      } catch (parseError) {
-        return text.includes("success") && text.includes("true");
-      }
-
-    } catch (error) {
-      console.error("Errore backend:", error);
-      return false;
-    }
+    return true;
+  } catch (error) {
+    console.error("Errore backend:", error);
+    return false;
   }
+}
 
   async function prepareBooking() {
     const comuniCoperti = [
