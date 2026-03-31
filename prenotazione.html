@@ -391,7 +391,7 @@
 
     <a
       id="payButton"
-      href="https://mypos.com/@max-impianti
+      href="https://mypos.com/@max-impianti"
       target="_blank"
       rel="noopener"
       class="btn-pay">
@@ -409,7 +409,6 @@
 </div>
 
 <script>
-  // SOSTITUISCI QUI CON IL TUO LINK /exec ATTUALE
   const BACKEND_URL = "https://script.google.com/macros/s/AKfycbxuIlt6bKxic_rFrLmztFcaC2kIbVS1WaZpGoHhFEvn3TvG7JI--LWcU7VxkU7GuurL/exec";
 
   function normalizeText(str) {
@@ -430,8 +429,7 @@
         <strong>Acconto richiesto online:</strong> €50,00<br>
         <strong>Saldo residuo:</strong> €49,00
       `;
-    } 
-    else if (servizio === "Manutenzione su guasto") {
+    } else if (servizio === "Manutenzione su guasto") {
       box.innerHTML = `
         <div class="price-title">Riepilogo economico</div>
         <strong>Servizio:</strong> Manutenzione su guasto.<br>
@@ -441,16 +439,14 @@
         - 5% di sconto sui ricambi<br>
         <strong>Nota:</strong> il costo finale dell'intervento sarà definito in base al guasto rilevato.
       `;
-    } 
-    else if (servizio === "Richiesta sopralluogo") {
+    } else if (servizio === "Richiesta sopralluogo") {
       box.innerHTML = `
         <div class="price-title">Riepilogo economico</div>
         <strong>Servizio:</strong> Richiesta sopralluogo.<br>
         <strong>Costo:</strong> gratuito<br>
         <strong>Pagamento online:</strong> non richiesto
       `;
-    } 
-    else {
+    } else {
       box.innerHTML = `
         <div class="price-title">Riepilogo economico</div>
         Seleziona un servizio per visualizzare costi, sconti e condizioni.
@@ -458,28 +454,38 @@
     }
   });
 
-async function sendBookingToBackend(payload) {
-  try {
-    const formData = new URLSearchParams();
-    Object.keys(payload).forEach(key => {
-      formData.append(key, payload[key] || "");
-    });
+  async function sendBookingToBackend(payload) {
+    try {
+      const formData = new URLSearchParams();
 
-    await fetch(BACKEND_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8"
-      },
-      body: formData.toString()
-    });
+      Object.keys(payload).forEach(key => {
+        formData.append(key, payload[key] || "");
+      });
 
-    return true;
-  } catch (error) {
-    console.error("Errore backend:", error);
-    return false;
+      const response = await fetch(BACKEND_URL, {
+        method: "POST",
+        body: formData
+      });
+
+      const text = await response.text();
+
+      try {
+        return JSON.parse(text);
+      } catch {
+        return {
+          success: false,
+          error: "Risposta backend non valida: " + text
+        };
+      }
+
+    } catch (error) {
+      console.error("Errore backend:", error);
+      return {
+        success: false,
+        error: String(error)
+      };
+    }
   }
-}
 
   async function prepareBooking() {
     const comuniCoperti = [
@@ -547,8 +553,7 @@ async function sendBookingToBackend(payload) {
       paymentNote.innerHTML = "Procedi al pagamento dell’acconto di €50,00. Il totale promozionale del servizio è €99,00, con saldo residuo di €49,00.";
       confirmButton.innerText = "✔ Ho completato il pagamento";
       confirmButton.href = "conferma.html";
-    } 
-    else if (servizio === "Manutenzione su guasto") {
+    } else if (servizio === "Manutenzione su guasto") {
       riepilogoEconomico = `
         <div class="summary-row"><strong>Acconto online:</strong> €50,00</div>
         <div class="summary-row"><strong>Sconto manodopera:</strong> 10%</div>
@@ -559,8 +564,7 @@ async function sendBookingToBackend(payload) {
       paymentNote.innerHTML = "Procedi al pagamento dell’acconto di €50,00. L’acconto dà diritto agli sconti web: 10% sulla manodopera e 5% sui ricambi.";
       confirmButton.innerText = "✔ Ho completato il pagamento";
       confirmButton.href = "conferma.html";
-    } 
-    else if (servizio === "Richiesta sopralluogo") {
+    } else if (servizio === "Richiesta sopralluogo") {
       riepilogoEconomico = `
         <div class="summary-row"><strong>Costo servizio:</strong> gratuito</div>
         <div class="summary-row"><strong>Pagamento online:</strong> non richiesto</div>
@@ -591,13 +595,17 @@ async function sendBookingToBackend(payload) {
 
     backendStatus.innerHTML = "Invio richiesta al sistema in corso...";
 
-    const saved = await sendBookingToBackend(prenotazione);
+    const result = await sendBookingToBackend(prenotazione);
 
-if (saved) {
-  backendStatus.innerHTML = "✅ Richiesta inviata correttamente. Tra pochi secondi dovrebbe comparire nel sistema.";
-} else {
-  backendStatus.innerHTML = "⚠️ Invio non riuscito. Ti consigliamo di contattarci anche telefonicamente o via WhatsApp.";
-}
+    if (result.success) {
+      backendStatus.innerHTML =
+        "✅ Richiesta inviata correttamente.<br>" +
+        "Stato email: <strong>" + escapeHtml(result.mailStatus || "non disponibile") + "</strong>";
+    } else {
+      backendStatus.innerHTML =
+        "⚠️ Errore invio.<br>" +
+        "Dettaglio: <strong>" + escapeHtml(result.error || "sconosciuto") + "</strong>";
+    }
 
     summaryBox.innerHTML = `
       <div class="summary-row"><strong>Cliente:</strong> ${escapeHtml(nome)}</div>
